@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub - Tes Kecocokan Organisasi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        // Fungsi untuk menampilkan bagian tertentu dan menyembunyikan lainnya
+        function showSection(sectionId) {
+            // Sembunyikan semua bagian
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('info').style.display = 'none';
+            document.getElementById('quiz').style.display = 'none';
+
+            // Tampilkan bagian yang dipilih
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Fungsi untuk kembali ke halaman utama
+        function goBack() {
+            // Sembunyikan semua bagian
+            document.getElementById('info').style.display = 'none';
+            document.getElementById('quiz').style.display = 'none';
+
+            // Tampilkan halaman utama
+            document.getElementById('home').style.display = 'block';
+
+            // Menambahkan event listener untuk tombol setelah kembali
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.innerText === 'Informasi Organisasi') {
+                        showSection('info');
+                    } else if (this.innerText === 'Mulai Quiz') {
+                        showSection('quiz');
+                    }
+                });
+            });
+        }
+
+        // Fungsi untuk menampilkan informasi organisasi berdasarkan pilihan
+        function displayOrganizationInfo() {
+            const select = document.getElementById('organizationSelect');
+            const selectedOrg = select.value;
+            const details = document.getElementById('organizationDetails');
+            details.innerHTML = organizationsInfo[selectedOrg];
+        }
+
+        // Data informasi organisasi
+        const organizationsInfo = {
+            HMMath: `<h2>HIMPUNAN MAHASISWA MATEMATIKA (HMMATH)</h2>
+            <p><strong>Kabinet:</strong> Titik Balik</p>
+            
+            <h3>Visi:</h3>
+            <p>HM Matematika Titik Balik bertujuan untuk menciptakan iklim organisasi yang harmonis serta menjadi panggung untuk membawa perubahan bagi matematika di masa depan.</p>
+            
+            <h3>Misi:</h3>
+            <ol>
+                <li>Menjunjung tinggi kekeluargaan serta profesionalitas internal pengurus HM Matematika sehingga tercipta keharmonisan dan keterikatan terhadap organisasi.</li>
+                <li>HM Matematika menjalin ikatan yang kuat dengan elemen-elemen yang ada di Matematika sehingga tercipta kerja sama yang saling menguntungkan antar pihak.</li>
+                <li>Menjadikan HM Matematika sebagai wadah aspirasi, potensi, minat, dan bakat bagi Warga Matematika.</li>
+            </ol>
+
+            <h3>Struktur Kepengurusan:</h3>
+            <ul>
+                <li>Pengurus Harian</li>
+                <li>Bidang 1: Pendidikan dan Penalaran (P2)</li>
+                <li>Bidang 2: Pengembangan Sumber Daya Mahasiswa (PSDM)</li>
+                <li>Bidang 3: Seni dan Olahraga (Seniora)</li>
+                <li>Bidang 4: Kesejahteraan Mahasiswa (Kesma)</li>
+                <li>Bidang 5: Networking Information & Communication (NIC)</li>
+                <li>Bidang 6: Bisnis dan Kemitraan (Bismit)</li>
+            </ul>
+            </ul>`,
+            Asmat: `<h2>ASOSIASI MATEMATIKA TERAPAN (ASMAT)</h2>
+            <p><strong>Kabinet:</strong> Rasa(Rasendriya Sadajiwa)</p>
+
+            <h3>Visi:</h3>
+            <p>Menjadikan ASMAT sebagai biro yang inklusif, berintegritas, dan berkeunggulan.</p>
+            
+            <h3>Misi:</h3>
+            <ol>
+                <li>Memupuk rasa empati, kesetaraan, dan kekeluargaan terhadap sesama anggota ASMAT.</li>
+                <li>Menjalin kerja sama dan membangun relasi yang baik dengan pihak internal maupun eksternal ASMAT.</li>
+                <li>Mewadahi potensi, minat, serta bakat mahasiswa Matematika UNDIP terutama dalam bidang akademik dan riset.</li>
+                <li>Menjalankan program kerja dengan mengedepankan nilai profesionalitas, kapabilitas, dan solidaritas.</li>
+            </ol>
+
+            <h3>Struktur Kepengurusan:</h3>
+            <ul>
+                <li>Pengurus Harian</li>
+                <p>Pengurus Harian dalam Biro ASMAT bertanggung jawab dalam melakukan fungsi monitoring, kontrol, koordinasi, pengembangan maupun peningkatan sistem manajemen administrasi dan keuangan serta komunikasi dalam membangun hubungan internal maupun eksternal Biro ASMAT. Pengurus Harian terdiri dari Ketua Umum, Sekretaris Umum, Sekretaris I, Sekretaris II, Bendahara I, dan Bendahara II.</p>
+                <li>Bidang 1: Akademik</li>
+                <p>Bidang Akademik merupakan bidang yang bergerak untuk memberikan fasilitas yang dapat memberdayakan dan meningkatkan mutu, potensi, serta prestasi akademik. Bidang Akademik juga memiliki peran sebagai penunjang sarana media belajar, seperti asistensi yang dapat mendukung kualitas akademik mahasiswa Matematika.</p>
+                <li>Bidang 2: Media Kreatif</li>
+                <p>Bidang Media merupakan bidang yang menjadi garda terdepan dalam menjembatani arus komunikasi dan informasi biro ASMAT, baik yang bersumber dari internal maupun eksternal. Bidang Media juga berperan untuk membangun jejaring, koneksi, dan relasi yang baik untuk menjaga citra serta nama baik ASMAT.</p>
+                <li>Bidang 3: Pengembangan</li>
+                <p>Bidang Pengembangan merupakan bidang yang berperan penting sebagai katalisator pengembangan kegiatan-kegiatan yang ada di dalam ASMAT melalui program kerja yang edukatif, kreatif, dan produktif. Bidang Pengembangan disalurkan melalui Klinik Matematika serta menyediakan kegiatan pelatihan bagi mahasiswa Matematika.</p>
+                <li>Bidang 4: Riset</li>
+                <p>Bidang Riset merupakan bidang yang menjadi puncak sekaligus pondasi penting dalam berdirinya ASMAT. Bidang ini berperan sebagai fasilitator riset dan sarana dalam mengembangkan ilmu pengetahuan serta penelitian. Bidang riset juga dapat dijadikan sebagai wadah bagi mahasiswa Matematika untuk menyalurkan ide kreatif dan inovatif dalam melakukan penelitian, termasuk PKM.</p>
+            </ul>
+            </ul>`,
+            Kesima: `<h2>KELOMPOK STUDI ISLAM MATEMATIKA (KESIMA)</h2>
+            <p><strong>Kabinet:</strong> Al-Beyt</p>
+            
+            <h3>Visi:</h3>
+            <p>Mewujudkan Kelompok Studi Islam Matematika Universitas Diponegoro sebagai lembaga dakwah jurusan dengan semangat kebersamaan dalam merintis inovasi-inovasi islam dan menyebarkan nilai-nilai kebermanfaatan bagi mahasiswa muslim dan muslimah Matematika.</p>
+            
+            <h3>Misi:</h3>
+            <ol>
+                <li>Menjadikan KESIMA sebagai rumah bagi seluruh pengurusnya dan membangun suasana kekeluargaan di dalam lingkungan KESIMA.</li>
+                <li>Meningkatkan optimalisasi program kerja dari setiap departemen yang ada di KESIMA.</li>
+                <li>Menjadikan KESIMA sebagai naungan kerohanian Islam bagi mahasiswa muslim dan muslimah matematika.</li>
+                <li>Membangun hubungan yang baik dengan semua pihak, baik di dalam maupun di luar KESIMA.</li>
+            </ol>
+
+            <h3>Struktur Kepengurusan:</h3>
+            <ul>
+                <li>Pengurus Harian</li>
+                <p>PH adalah pusat, baik pusat administrasi, pusat keuangan, dan tentunya pusatnya Kesima (Mas'ul). PH juga mengawasi dan mengkoordinasi departemen-departemen yang ada di Kesima.</p>
+                <li>Departemen 1: Kaderisasi</li>
+                <p>Kaderisasi merupakan departemen yang berperan dalam mencetak kader yang berkualitas.</p>
+                <li>Departemen 2: Syiar</li>
+                <p>Syiar merupakan departemen yang berperan untuk menyebarluaskan kebaikan melalui media sosialnya Kesima maupun secara langsung.</p>
+                <li>Departemen 3: Annisa</li>
+                <p>Annisa merupakan departemen yang berbeda dari lainnya. Dalam departemen ini hanya berisi Akhwat saja. Departemen Annisa khusus bertanggung jawab sebagai koordinator kegiatan kaderisasi dan syiar Islam kemuslimahan.</p>
+                <li>Departemen 4: Economic and Public Relation (EPR)</li>
+                <p>EPR merupakan departemen yang bergerak di bidang ekonomi dan humas yaitu mencari keuntungan dari kegiatan ekonomi untuk menunjang kegiatan yang ada di Kesima, serta menjadi jembatan antara Kesima dan pihak luar untuk menjalin silaturahmi.</p>
+            </ul>
+            </ul>`,
+            Lemma: `<h2>LENSA MATEMATIKA (LEMMA)</h2>
+            <p><strong>Kabinet:</strong> LEMMA HEBAT</p>
+
+            <h3>Struktur Kepengurusan:</h3>
+            <ul>
+                <li>Pengurus Harian</li>
+                <li>Divisi 1: Media</li>
+                <p>Divivi Media merupakan divisi yang berperan mengelola semua akun media yang dimiliki Biro LEMMA sebagai sarana untuk penyebaran informasi dan menghasilkan karya-karya kreatif yang dikemas secara menarik.</p>
+                <li>Divisi 2:Development</li>
+                <p>Divisi Development merupakan divisi yang berperan dalam peningkatan dan pengembangan mutu internal dan eksternal Biro LEMMA melalui kegiatan pelatihan.</p>
+                <li>Divisi 3: Redaksi</li>
+                <p>Divisi Redaksi merupakan divisi yang bertangunng jawab dalam mekanisme dan aktivitas kerja keredaksian yang meliputi peliputan, penulisan, dan pengelolaan website.</p>
+            </ul>
+            </ul>`,
+            Epsilon: `<h2>EXPEDITION FOR LIFE OF NATURE (EPSILON)</h2>
+            <p>Biro pecinta alam Matematika</p>
+
+            <h3>Struktur Kepengurusan:</h3>
+            <ul>
+                <li>Pengurus Harian</li>
+                <li>Tim 1: Expedition</li>
+                <li>Tim 2: Life</li>
+                <li>Tim 3: Nature</li>
+            </ul>
+            </ul>`,
+            UKM: `<h2>Unit Kegiatan Mahasiswa (UKM)</h2>
+            <h3>Macam-macam UKM UNDIP:</h3>
+            <ul>
+                <li>Pengurus Harian</li>
+<li>Peduli Napza</li>
+<li>UKSA 387</li>
+<li>IMA SC Undip</li>
+<li>KAMADIKSI</li>
+<li>PMKP</li>
+<li>KMBD</li>
+<li>PRMK</li>
+<li>Menembak</li>
+<li>Rebana Diponegoro University</li>
+<li>Karate Shokaido</li>
+<li>Tapak Suci</li>
+<li>Bulutangkis</li>
+<li>Softball-Baseball</li>
+<li>Sepak Bola</li>
+<li>KOMIPA</li>
+<li>Prisma</li>
+<li>PSMU</li>
+<li>RnB</li>
+<li>INSANI</li>
+<li>Taekwondo</li>
+<li>KSR PMI Unit Undip</li>
+<li>Tenis Lapangan</li>
+<li>Futsal</li>
+<li>Bola Basket</li>
+<li>KHMD</li>
+<li>Merpati Putih</li>
+<li>Bola Voli</li>
+<li>Kesenian Jawa</li>
+<li>Tenis Meja</li>
+<li>Manunggal</li>
+<li>Peduli Sosial</li>
+<li>IAAS LC UNDIP</li>
+<li>Teater Diponegoro</li>
+<li>Diponegoro Orchestra</li>
+<li>Kronik Filmedia</li>
+<li>Marching Band</li>
+<li>WAPEALA</li>
+<li>PSHT</li>
+<li>DMS</li>
+<li>Catur</li>
+<li>Menwa</li>
+<li>Panahan</li>
+<li>Pramuka Racana</li>
+<li>PSM</li>
+            </ul>
+            </ul>`,
+            "BEM U": "<p>Coming Soon</p>",
+            "Organisasi Keagamaan": "<p>Coming Soon</p>"
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Halaman Utama -->
+        <div id="home" class="section">
+            <div class="header">
+                <h1>TalentHub</h1>
+                <h2>Selamat datang di TalentHub! Temukan organisasi yang tepat sesuai minat dan bakatmu</h2>
+                <h2>"Mewujudkan Potensimu, Mencapai Impianmu"</h2>
+            </div>
+            <div class="menu">
+                <button class="btn" onclick="showSection('info')">Informasi Organisasi</button>
+                <button class="btn" onclick="showSection('quiz')">Mulai Quiz</button>
+            </div>
+        </div>
+
+        <!-- Informasi Organisasi -->
+        <div id="info" class="section hidden">
+            <h2>Informasi Organisasi</h2>
+            <label for="organizationSelect">Pilih Organisasi:</label>
+            <select id="organizationSelect" onchange="displayOrganizationInfo()">
+                <option value="HMMath">HMMath</option>
+                <option value="Asmat">Asmat</option>
+                <option value="Kesima">Kesima</option>
+                <option value="Lemma">Lemma</option>
+                <option value="Epsilon">Epsilon</option>
+                <option value="UKM">UKM</option>
+                <option value="BEM U">BEM U</option>
+                <option value="Organisasi Keagamaan">Organisasi Keagamaan</option>
+            </select>
+            <div id="organizationDetails"></div>
+            <button class="btn" onclick="goBack()">Kembali</button>
+        </div>
+
+        <!-- Quiz -->
+        <div id="quiz" class="section hidden">
+            <h2>Quiz: Tes Kecocokan Organisasi</h2>
+            <form id="quizForm">
+                <!-- Konten Quiz -->
+            </form>
+            <button class="btn" onclick="goBack()">Kembali</button>
+        </div>
+        <div id="result" class="hidden"></div>
+    </div>
+    <script src="script.js"></script>
+<!-- Menambahkan canvas-confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
